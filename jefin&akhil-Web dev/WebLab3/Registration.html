@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body bgcolor="thistle">
+    <h1>Registration Form</h1>
+    <form>
+
+        <table border="1">
+            <tr> <td><label>Name:</label></td><td><input type="text" placeholder="Enter your Name"></td></tr>
+            <tr><td><label>Age:</label></td><td><select>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="30+">30+</option></td></tr>
+                </select></td></tr>
+
+                <tr><td><label>Password:</label></td><td><input type="password" placeholder="Enter your password"></td></tr>
+                <tr><td><label>Re-enter Password:</label></td><td><input type="password" placeholder="Re-enter your password"></td></tr>
+
+                <tr><td rowspan="4">Select your security question:</td>
+                <td><input type="radio" name="securityqn" value="petname">What is your pet name?</td></tr>
+                <tr><td><input type="radio" name="securityqn" value="bestfrnd">who is your best friend?</td></tr>
+                <tr><td> <input type="radio" name="securityqn" value="favcolor">What is your favourite color?</td></tr>
+                <tr><td><input type="radio" name="securityqn" value="favtchr">who is your favourite teacher?</td></tr>
+
+                <tr><td><label>Email id:</label></td><td><input type="email" placeholder="example@gmail.com"></td></tr>
+
+                <tr><td rowspan="3"><label>Languages known:</label></td>
+                    <td><input type="checkbox" name="Malayalam" id="" >Malayalam</td></tr>
+                    <tr><td> <input type="checkbox" name="English" id="" >English</td></tr>
+                    <tr><td><input type="checkbox" name="Hind" id="" >Hindi</td></tr>
+                
+                <tr><td>Phone Number:</td>
+                    <td><table>
+                            <tr><th>Home</th><th>Ofice</th></tr>
+                            <tr><td><input type="text" ></td><td><input type="text"></td></tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr><td>Upload CV:</td><td><input type="file"></td></tr>
+
+                <tr><td><input type="reset"></td><td><input type="submit"></td></tr>
+    </table>
+    
+    </form>
+    
+</body>
+</html>

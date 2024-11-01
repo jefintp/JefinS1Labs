@@ -1,0 +1,6 @@
+#to print the absolute value of an integer
+#to check whether the input number is odd or even
+#+ve or not
+#to determine the rate of entry ticket in a trade fair based on age as follows :
+#age<10 - 7   age>=10 and age<60 - 10   age>=60 - 5
+#find the smallest of three numbers

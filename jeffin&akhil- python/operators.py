@@ -1,0 +1,11 @@
+#Python Operators
+a=int(input("Enter first number:"))
+b=int(input("Enter second number:"))
+print("Sum is :",a+b)
+print("Difference is :",a-b)
+print("Negation is :",a--b)
+print("Product is :",a*b)
+print("Division  is :",a/b)
+print("Floor division is :",a//b)
+print("Remainder is :",a%b)
+print("a raise to b is :",a**b)
