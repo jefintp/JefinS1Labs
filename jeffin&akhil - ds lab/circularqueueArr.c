@@ -40,6 +40,7 @@ void main()
 
 void display(int cqueue[],int n)
 {
+    
     if(front==-1)
     {
         printf("\nQueue is empty\v");
@@ -47,10 +48,12 @@ void display(int cqueue[],int n)
     }
     else
     {
+        int i=front;
         printf("\nElements are: \n");
-        for(int i=(front+1)%n;(i+1)%n<=(rear+1)%n;i=(i+1)%n)
+        while(i<=rear)
         {
             printf("%d\t",cqueue[i]);
+            i=(i+1)%n;
         }
         printf("\v");
        
@@ -82,6 +85,7 @@ void enqueue(int cqueue[],int n)
         }
         printf("\v");
     }
+    printf("%d\t%d",front,rear);
 }
 
 void dequeue(int cqueue[],int n)
