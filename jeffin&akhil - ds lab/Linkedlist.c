@@ -14,7 +14,7 @@ void display()
 {
     if(head==NULL)
     {
-        printf("List is empty!!!\n");
+        printf("\nList is empty!!!\n");
     }
     else
     {
@@ -24,6 +24,7 @@ void display()
             printf("%d -> ",temp->data);
             temp=temp->next;
         }
+        printf("NULL\n");
     }
 }
 
@@ -56,44 +57,44 @@ void insert()
     if(head==NULL)
     {
         head=newnode;
+        printf("\nInserted %d\n",newnode->data);
+        printf("\nNew list is\n");
+        display();
     }
     else
     {
         int c,p,n;
         n=count();
-        printf("Where do you want to insert \n1.Begining 2.Specific position 3. End : ");
+        printf("\n1.Begining \n2.Specific position \n3. End \nWhere do you want to insert : ");
         scanf("%d",&c);
         switch (c)
         {
         case 1:
             newnode->next=head;
             head=newnode;
+            printf("\nInserted %d",newnode->data);
+            printf("\nNew list is\n");
+            display();
             break;
 
         case 2:
             printf("Enter the position to enter : ");
             scanf("%d",&p);
+            if(p>n+1)
+            {
+                printf("\nInvalid position!!!\n");
+                break;
+            }
             if(p==1)
             {
                 newnode->next=head;
                 head=newnode;
+                printf("\nInserted %d\n",newnode->data);
+                printf("\nNew list is\n");
+                display();
                 break;
             }
-            else if(p==n)
-            {
-                temp=head;
-                while (temp->next!=NULL)
-                {
-                    temp=temp->next;
-                }
-                temp->next=newnode;
-                break;
-            }
-            if(p>n)
-            {
-                printf("Invalid position");
-                break;
-            }
+            
             temp=head;
             for(int i=2;i<p;i++)
             {
@@ -101,6 +102,9 @@ void insert()
             }
             newnode->next=temp->next;
             temp->next=newnode;
+            printf("\nInserted %d\n",newnode->data);
+            printf("\nNew list is\n");
+            display();
             break;
             
         case 3:
@@ -110,6 +114,9 @@ void insert()
                 temp=temp->next;
             }
             temp->next=newnode;
+            printf("\nInserted %d\n",newnode->data);
+            printf("\nNew list is\n");
+            display();
             break;
 
         default:
@@ -120,26 +127,44 @@ void insert()
 
 void delete()
 {
+    int n;
+    n=count();
     if(head==NULL)
     {
-        printf("List is empty!!!\n");
+        printf("\nList is empty!!!\n");
+    }
+    else if(n==1)
+    {
+        temp=head;
+        head=NULL;
+        printf("\nDeleted %d\n",temp->data);
+        printf("\nNew list is empty\n");
+        free(temp);
     }
     else
     {
         int c,p;
-        printf("Which node do you want to delete \n1.Begining 2.Specific node 3. End : ");
+        printf("\n1.Begining \n2.Specific node \n3. End\nWhich node do you want to delete : ");
         scanf("%d",&c);
         switch (c)
         {
             case 1:
                 temp=head;
                 head=head->next;
+                printf("\nDeleted %d\n",temp->data);
+                printf("\nNew list is\n");
+                display();
                 free(temp);
                 break;
 
             case 2:
                 printf("Enter the position to delete : ");
                 scanf("%d",&p);
+                if(p>n)
+                {
+                    printf("\nInvalid position!!!\n");
+                    break;
+                }
                 current=head;
                 for(int i=2;i<p;i++)
                 {
@@ -147,6 +172,9 @@ void delete()
                 }
                 temp=current->next;
                 current->next=temp->next;
+                printf("\nDeleted %d\n",temp->data);
+                printf("\nNew list is\n");
+                display();
                 free(temp);
                 break;
                 
@@ -158,6 +186,9 @@ void delete()
                 }
                 temp=current->next;
                 current->next=NULL;
+                printf("\nDeleted %d\n",temp->data);
+                printf("\nNew list is\n");
+                display();
                 free(temp);
                 break;
 
@@ -196,4 +227,3 @@ void main()
     }
 
 }
-
