@@ -139,7 +139,6 @@ void delete()
         head=NULL;
         printf("\nDeleted %d\n",temp->data);
         printf("\nNew list is empty\n");
-        free(temp);
     }
     else
     {
