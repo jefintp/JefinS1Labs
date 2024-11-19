@@ -6,6 +6,7 @@ struct node
     {
         int data;
         struct node *next;
+        struct node *prev;
     };
 struct node *head=NULL,*temp,*current,*newnode;
 
@@ -19,9 +20,10 @@ void display()
     else
     {
         temp=head;
+        printf("\nNULL <-> ");
         while(temp!=NULL)
         {
-            printf("%d -> ",temp->data);
+            printf("%d <-> ",temp->data);
             temp=temp->next;
         }
         printf("NULL\n");
@@ -53,6 +55,7 @@ void insert()
     printf("Enter the element : ");
     scanf("%d",&newnode->data);
     newnode->next=NULL;
+    newnode->prev=NULL;
 
     if(head==NULL)
     {
@@ -71,6 +74,7 @@ void insert()
         {
         case 1:
             newnode->next=head;
+            head->prev=newnode;
             head=newnode;
             printf("\nInserted %d",newnode->data);
             printf("\nNew list is\n");
@@ -88,6 +92,7 @@ void insert()
             if(p==1)
             {
                 newnode->next=head;
+                head->prev=newnode;
                 head=newnode;
                 printf("\nInserted %d\n",newnode->data);
                 printf("\nNew list is\n");
@@ -101,7 +106,17 @@ void insert()
               temp=temp->next;
             }
             newnode->next=temp->next;
-            temp->next=newnode;
+            if (temp->next==NULL)
+            {
+                temp->next=newnode;
+                newnode->prev=temp;
+            }
+            else
+            {
+                temp->next->prev=newnode;
+                newnode->prev=temp;
+                temp->next=newnode;
+            }
             printf("\nInserted %d\n",newnode->data);
             printf("\nNew list is\n");
             display();
@@ -114,6 +129,7 @@ void insert()
                 temp=temp->next;
             }
             temp->next=newnode;
+            newnode->prev=temp;
             printf("\nInserted %d\n",newnode->data);
             printf("\nNew list is\n");
             display();
@@ -151,6 +167,7 @@ void delete()
             case 1:
                 temp=head;
                 head=head->next;
+                head->prev=NULL;
                 printf("\nDeleted %d\n",temp->data);
                 printf("\nNew list is\n");
                 display();
@@ -169,6 +186,7 @@ void delete()
                 {
                     temp=head;
                     head=head->next;
+                    head->prev=NULL;
                 }
                 else
                 {
@@ -177,10 +195,18 @@ void delete()
                     {
                     current=current->next;
                     }
-                    temp=current->next;
-                    current->next=temp->next;
+                    if(current->next->next==NULL)
+                    {
+                        temp=current->next;
+                        current->next=NULL;
+                    }
+                    else
+                    {
+                        temp=current->next;
+                        current->next=temp->next;
+                        temp->next->prev=current;
+                    }
                 }
-                
                 printf("\nDeleted %d\n",temp->data);
                 printf("\nNew list is\n");
                 display();
@@ -212,7 +238,7 @@ void main()
     int choice=0;
     while(choice<4)
     {
-        printf("\nLinked List operations\n");
+        printf("\nDoubly Linked List operations\n");
         printf("1.Display \n2.Insertion \n3.Deletion \n4.Exit\n");
         printf("Enter your choice : ");
         scanf("%d",&choice);

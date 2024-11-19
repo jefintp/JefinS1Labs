@@ -7,38 +7,38 @@ struct node
         int data;
         struct node *next;
     };
-struct node *top=NULL,*temp,*newnode;
+struct node *front=NULL,*rear=NULL,*temp,*newnode;
 int n;
 
 void display()
 {
-    if(top==NULL)
+    if(front==NULL)
     {
-        printf("\nStack is empty!!!\n");
+        printf("\nQueue is empty!!!\n");
     }
     else
     {
         printf("\n");
-        temp=top;
+        temp=front;
         while(temp!=NULL)
         {
-            printf("%d\n^\n",temp->data);
+            printf("%d  ",temp->data);
             temp=temp->next;
         }
-        printf("!\n");
+        printf("\n");
     }
 }
 
 int count()
 {
     int count=0;
-    if(top==NULL)
+    if(front==NULL)
     {
         return count;
     }
     else
     {
-        temp=top;
+        temp=front;
         while(temp!=NULL)
         {
             count++;
@@ -48,50 +48,56 @@ int count()
     }
 }
 
-void push()
+void enqueue()
 {
     int c;
     c=count();
     if(c==n)
     {
-        printf("\nOverflow!!\n");
+        printf("\nQueue is full!!\n");
     }
-    else if (top==NULL)
+    else if (rear==NULL)
     {
         newnode=(struct node*)malloc(sizeof(newnode));
         printf("Enter the element : ");
         scanf("%d",&newnode->data);
         newnode->next=NULL;
-        top=newnode;
+        front=newnode;
+        rear=newnode;
+        printf("\nInserted %d\n",newnode->data);
+        display();
     }
     else
     {
         newnode=(struct node*)malloc(sizeof(newnode));
         printf("Enter the element : ");
         scanf("%d",&newnode->data);
-        newnode->next=top;
-        top=newnode;
+        newnode->next=NULL;
+        rear->next=newnode;
+        rear=newnode;
+        printf("\nInserted %d\n",newnode->data);
+        display();
     }
 }
 
-void pop()
+void dequeue()
 {
-    if(top==NULL)
+    if(front==NULL)
     {
-        printf("\nUnderflow!!\n");
+        printf("\nQueue is empty!!\n");
     }
-    else if (top->next==NULL)
+    else if (front==rear)
     {
-        temp=top;
-        top=NULL;
+        temp=front;
+        front=NULL;
+        rear=NULL;
         printf("\nDeleted %d\n",temp->data);
-        printf("\nStack is empty\n");
-        free(temp);
+        printf("\nQueue is empty\n");
     }
     else
     {
-        temp=top;
-        top=top->next;
+        temp=front;
+        front=front->next;
         printf("\nDeleted %d\n",temp->data);
         free(temp);
         display();
@@ -100,13 +106,13 @@ void pop()
 
 void main()
 {
-    printf("Enter the size of the stack : ");
+    printf("Enter the size of the Queue : ");
     scanf("%d",&n);
     int choice=0;
     while(choice<4)
     {
-        printf("\nStack operations\n");
-        printf("1.Display \n2.Push \n3.Pop \n4.Exit\n");
+        printf("\nQueue operations\n");
+        printf("1.Display \n2.enqueue \n3.dequeue \n4.Exit\n");
         printf("Enter your choice : ");
         scanf("%d",&choice);
 
@@ -116,10 +122,10 @@ void main()
                 display();
                 break;
             case 2:
-                push();
+                enqueue();
                 break;
             case 3:
-                pop();
+                dequeue();
                 break;
             case 4:
                 break;
