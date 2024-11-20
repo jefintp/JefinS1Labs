@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="header">
+        <marquee><h1 style="font-size: xxx-large;">WELCOME TO WORLD OF CSS</h1></marquee>
+    </div>
+    <div id="image">
+        <img id="img1" src="html.jpg" >
+        <img id="img2" src="comp.jpg">
+    
+    </div>
+    <div id="flex" >
+        <div id="flex1">
+            Properties
+            <ul>
+                <li>Color</li>
+                <li>Line height</li>
+            </ul>
+
+        </div>
+        <div id="flex2">
+            What is CSS?<br><br>
+            CSS stand for Cascading Style Sheets
+        </div>
+    </div>
+</body>
+
+<style>
+#header{
+    background-color: #f2f2f2;
+    width: 100dvw;
+    height: 20dvh;
+    align-content: center;
+    justify-items: center;
+    color: #ea0a0a;
+}
+
+#image{
+    background-color: #8f8a8a;
+    width: 100dvw;
+    height: 40dvh;
+}
+
+#flex{
+    background-color: #e18e8e;
+    display: flex;
+    width: 100dvw;
+    height: 40dvh;
+}
+
+#img1{
+    position: absolute;
+    height: 280px;
+    width: 400px;
+    padding: 10px;
+}
+
+#img2{
+    position: absolute;
+    height: 280px;
+    width: 400px;
+    padding: 10px;
+    animation: opacity 10s infinite;
+}
+
+@keyframes opacity {
+    0% { 
+        opacity: 0; 
+    }
+    25% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+#flex1{
+    background-color: #e1d7d7;
+    width: 50%;
+    color: rgb(0, 47, 255);
+    align-content: center;
+    justify-items: left;
+    font-size: xx-large;
+}
+
+#flex2{
+    background-color: #e79090;
+    width: 50%;
+    color: rgb(0, 0, 0);
+    align-content: center;
+    justify-items: center;
+    font-size: x-large;
+}
+
+
+
+</style>
+</html>
