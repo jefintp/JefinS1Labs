@@ -205,7 +205,6 @@ void delete()
                 printf("\nNew list is\n");
                 display();
                 printf("head %d tail %d",head->data,tail->data);
-                free(temp);
                 break;
                 
             case 3:
@@ -221,7 +220,6 @@ void delete()
                 printf("\nNew list is\n");
                 display();
                 printf("current %d head %d tail %d",current->data,head->data,tail->data);
-                free(temp);
                 break;
 
             default:
