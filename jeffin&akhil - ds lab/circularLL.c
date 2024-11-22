@@ -63,12 +63,13 @@ void insert()
         printf("\nInserted %d\n",newnode->data);
         printf("\nNew list is\n");
         display();
+        printf("head %d tail %d",head->data,tail->data);
     }
     else
     {
         int c,p,n;
         n=count();
-        printf("\n1.Begining \n2.Specific position \n3. End \nWhere do you want to insert : ");
+        printf("\n1.Begining \n2.Specific position \n3.End \nWhere do you want to insert : ");
         scanf("%d",&c);
         switch (c)
         {
@@ -79,6 +80,7 @@ void insert()
             printf("\nInserted %d",newnode->data);
             printf("\nNew list is\n");
             display();
+            printf("head %d tail %d",head->data,tail->data);
             break;
 
         case 2:
@@ -97,6 +99,7 @@ void insert()
                 printf("\nInserted %d\n",newnode->data);
                 printf("\nNew list is\n");
                 display();
+                printf("head %d tail %d",head->data,tail->data);
                 break;
             }
             
@@ -107,9 +110,14 @@ void insert()
             }
             newnode->next=temp->next;
             temp->next=newnode;
+            if(newnode->next==head)
+            {
+                tail=newnode;
+            }
             printf("\nInserted %d\n",newnode->data);
             printf("\nNew list is\n");
             display();
+            printf("head %d tail %d",head->data,tail->data);
             break;
             
         case 3:
@@ -119,6 +127,7 @@ void insert()
             printf("\nInserted %d\n",newnode->data);
             printf("\nNew list is\n");
             display();
+            printf("head %d tail %d",head->data,tail->data);
             break;
 
         default:
@@ -142,7 +151,6 @@ void delete()
         tail=NULL;
         printf("\nDeleted %d\n",temp->data);
         printf("\nNew list is empty\n");
-        free(temp);
     }
     else
     {
@@ -153,12 +161,16 @@ void delete()
         {
             case 1:
                 temp=head;
-                head=head->next;
+                printf("\nhead %d tail %d\n",head->data,tail->data);
+                head=temp->next;
                 tail->next=head;
+                printf("\n\nhead %d tail %d tail next %d\n\n",head->data,tail->data,tail->next->data);
                 printf("\nDeleted %d\n",temp->data);
                 printf("\nNew list is\n");
                 display();
-                free(temp);
+                printf("head %d tail %d",head->data,tail->data);
+                
+                printf("tail next %d",tail->next->data);
                 break;
 
             case 2:
@@ -192,12 +204,13 @@ void delete()
                 printf("\nDeleted %d\n",temp->data);
                 printf("\nNew list is\n");
                 display();
+                printf("head %d tail %d",head->data,tail->data);
                 free(temp);
                 break;
                 
             case 3:
                 current=head;
-                while (current->next->next!=head)
+                while (current->next!=tail)
                 {
                     current=current->next;
                 }
@@ -207,6 +220,7 @@ void delete()
                 printf("\nDeleted %d\n",temp->data);
                 printf("\nNew list is\n");
                 display();
+                printf("current %d head %d tail %d",current->data,head->data,tail->data);
                 free(temp);
                 break;
 
