@@ -1,0 +1,16 @@
+1.Array
+2.Stack
+3.Queue
+4.C.Queue
+5.Linkedlist
+6.Doubly Linked list
+7.CLL
+8.Set using bit string
+
+9.BST
+10.Prims Algorothm
+11.Kruskals Algorothm
+12.Dijikstras Algorothm
+13.Topological sorting
+14.DFS
+15.BFS

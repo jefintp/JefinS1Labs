@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/sa/Desktop/jeffin&akhil - ds lab",
-      "program": "c:/Users/sa/Desktop/jeffin&akhil - ds lab/build/Debug/outDebug",
+      "cwd": "c:/Users/sa/Desktop/jefin&Akhil lab/jeffin&akhil - ds lab",
+      "program": "c:/Users/sa/Desktop/jefin&Akhil lab/jeffin&akhil - ds lab/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

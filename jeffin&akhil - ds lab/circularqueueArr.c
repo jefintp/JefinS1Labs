@@ -46,11 +46,26 @@ void display(int cqueue[],int n)
         printf("\nQueue is empty\v");
         Beep(530,200);
     }
+    else if(front==rear)
+    {
+        printf("\nElements are: \n%d",cqueue[front]);
+    }
+    else if((rear+1%n)==front)
+    {
+        int i=front;
+        printf("\nElements are: \n");
+        while(i!=rear)
+        {
+            printf("%d\t",cqueue[i]);
+            i=(i+1)%n;
+        }
+        printf("\v");
+    }
     else
     {
         int i=front;
         printf("\nElements are: \n");
-        while(i<=rear)
+        while(i!=(rear+1)%n)
         {
             printf("%d\t",cqueue[i]);
             i=(i+1)%n;
