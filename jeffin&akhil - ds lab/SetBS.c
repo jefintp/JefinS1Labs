@@ -1,39 +1,78 @@
 #include<stdio.h>
+int repeat(int a[],int n,int e);
+int member(int a[],int n,int e);
 void main()
 {
-    int u[50],s1[50],s2[50],n,n1,n2,t;
+    int u[50],s1[50],s2[50],n,n1,n2,t,f,m;
 
     printf("Enter the number of elements in the Universal Set :");
     scanf("%d",&n);
     printf("Enter the element 1 of the Universal Set : ");
     scanf("%d",&u[0]);
+
     for(int i=1;i<n;i++)
     {   
         printf("Enter the element %d of the Universal Set : ",i+1);
         scanf("%d",&t);
-        for(int j=0;j<=i;j++)
-            if(t==u[i])
-                printf("\nEntered element already exist");
-                printf("\nEnter the element %d of the Universal Set : ",i+1);
-                scanf("%d",&u[i]);
-            else
-                u[i]=t;
+        f=repeat(u,n,t);
+        while(f==1)
+        {
+            printf("\nElement already exists in the Universal Set.\nEnter another element for position %d: ",i+1);
+            scanf("%d",&t);
+            f=repeat(u,n,t);
+        }
+        u[i]=t;
     }
 
-    printf("Enter the number of elements in the Set 1 :");
+    printf("Universal set is :\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ",u[i]);
+    }
+    
+
+    printf("\vEnter the number of elements in the Set 1 :");
     scanf("%d",&n1);
     for(int i=0;i<n1;i++)
     {
-        printf("Enter the element %d of the Set 1 : ",i+1);
-        scanf("%d",&s1[i]);
+        printf("\nEnter the element %d of the Set 1 : ",i+1);
+        scanf("%d",&t);
+        f=repeat(s1,i,t);
+        m=member(u,n,t);
+        while(f==1||m==0)
+        {
+            if(f==1)
+                printf("\nElement already exists in Set 1.\n Enter another element from Universal set for position %d: ",i+1); 
+            if(m==0)
+                printf("\nElement is not a member of Universal Set.\n Enter another element from Universal set for position %d: ",i+1); 
+            
+            scanf("%d",&t);
+            f=repeat(s1,i,t);
+            m=member(u,n,t);
+        }
+        s1[i]=t;
     }
 
-    printf("Enter the number of elements in the Set 2 :");
+    printf("\vEnter the number of elements in the Set 2 :");
     scanf("%d",&n2);
     for(int i=0;i<n2;i++)
     {
-        printf("Enter the element %d of the Set 2 : ",i+1);
-        scanf("%d",&s2[i]);
+        printf("\nEnter the element %d of the Set 2 : ",i+1);
+        scanf("%d",&t);
+        f=repeat(s2,i,t);
+        m=member(u,n,t);
+        while(f==1||m==0)
+        {
+            if(f==1)
+                printf("\nElement already exists in Set 2.\n Enter another element from Universal set for position %d: ",i+1); 
+            if(m==0)
+                printf("\nElement is not a member of Universal Set.\n Enter another element from Universal set for position %d: ",i+1); 
+            
+            scanf("%d",&t);
+            f=repeat(s2,i,t);
+            m=member(u,n,t);
+        }
+        s2[i]=t;
     }
 
     int S1[n],S2[n];
@@ -59,12 +98,12 @@ void main()
             S2[i]=0;  
         }
     }
-    printf("Bitstring of Set 1\n");
+    printf("\n\nBitstring of Set 1\n");
     for(int i=0;i<n;i++)
     {
         printf("%d ",S1[i]);
     }
-    printf("Bitstring of Set 2\n");
+    printf("\n\nBitstring of Set 2\n");
     for(int i=0;i<n;i++)
     {
         printf("%d ",S2[i]);
@@ -92,23 +131,51 @@ void main()
         else
             diff[i]=0;
      }
-    printf("\nS1 U S2=");
+    printf("\n\nS1 U S2 = ");
     for(int i=0;i<n;i++)
     {
     printf("%d ",uni[i]);
     }
 
-    printf("\nS1^S2=");
+    printf("\n\nS1^S2 = ");
     for(int i=0;i<n;i++)
     {
     printf("%d ",inter[i]);
     }
 
-    printf("\nS1-S2=");
+    printf("\n\nS1-S2 = ");
     for(int i=0;i<n;i++)
     {
     printf("%d ",diff[i]);
     }
 
 
+}
+
+int repeat(int a[],int n, int e)
+{
+    int f=0;
+    for(int i=0;i<n;i++)
+    {
+        if(a[i]==e)
+        {
+            f=1;
+            break;
+        }
+    }
+    return f;
+}
+
+int member(int a[],int n,int e)
+{
+    int m=0;
+    for(int i=0;i<n;i++)
+    {
+        if(a[i]==e)
+        {
+            m=1;
+            break;
+        }
+    }
+    return m;
 }
