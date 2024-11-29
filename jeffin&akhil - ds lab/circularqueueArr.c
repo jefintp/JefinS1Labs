@@ -50,15 +50,15 @@ void display(int cqueue[],int n)
     {
         printf("\nElements are: \n%d",cqueue[front]);
     }
-    else if((rear+1%n)==front)
+    else if((rear+1%n)==front||(front==0&&rear==n-1))
     {
         int i=front;
         printf("\nElements are: \n");
-        while(i!=rear)
+        do
         {
             printf("%d\t",cqueue[i]);
             i=(i+1)%n;
-        }
+        }while(i!=front);
         printf("\v");
     }
     else

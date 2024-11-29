@@ -8,9 +8,9 @@
 8.Set using bit string
 
 9.BST
-10.Prims Algorothm
-11.Kruskals Algorothm
-12.Dijikstras Algorothm
+10.Prims Algorithm
+11.Kruskals Algorithm
+12.Dijikstras Algorithm
 13.Topological sorting
 14.DFS
 15.BFS
