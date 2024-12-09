@@ -15,11 +15,19 @@ struct node *root=NULL,*temp,*current,*newnode;
 
 void inorderdisplay(struct node *temp)
 {
-    if(temp!=NULL)
-    {   
-        printf("%d ",temp->data);
-        inorderdisplay(temp->left);
-        inorderdisplay(temp->right);
+    if(root==NULL)
+    {
+        printf("\nTree empty!\n");
+    }
+    else
+    {
+        if(temp!=NULL)
+        {
+            inorderdisplay(temp->left);
+            printf("%d ",temp->data);
+            inorderdisplay(temp->right);
+        }   
+           
     }
 }
 
@@ -73,115 +81,263 @@ int count()
 
 void insert()
 {
-    newnode=(struct node*)malloc(sizeof(newnode));
+    int t,f;
     printf("\nEnter the element : ");
-    scanf("%d",&newnode->data);
-    newnode->left=NULL;
-    newnode->right=NULL;
-
-    if(root==NULL)
+    scanf("%d",&t);
+    f=inordertraversal(root,t);
+    if(f==0)
     {
-        root=newnode;
-        printf("\nInserted %d\n",newnode->data);
-        printf("\nNew tree is\n");
-        inorderdisplay(root);
+        newnode=(struct node*)malloc(sizeof(newnode));
+        newnode->data=t;
+        newnode->left=NULL;
+        newnode->right=NULL;
+
+        if(root==NULL)
+        {
+            root=newnode;
+            printf("\nInserted %d\n",newnode->data);
+            printf("\nNew tree is\n");
+            inorderdisplay(root);
+        }
+        else
+        {
+            temp=root;
+            while(temp!=NULL)
+            {
+                if(t<temp->data)
+                {
+                    if(temp->left==NULL)
+                    {
+                        temp->left=newnode;
+                        printf("\nInserted %d\n",newnode->data);
+                        printf("\nNew tree is\n");
+                        inorderdisplay(root);
+                        break;
+                    }
+                    else
+                    {
+                        temp=temp->left;
+                    }
+                }
+                else
+                {
+                    if(temp->right==NULL)
+                    {
+                        temp->right=newnode;
+                        printf("\nInserted %d\n",newnode->data);
+                        printf("\nNew tree is\n");
+                        inorderdisplay(root);
+                        break;
+                    }
+                    else
+                    {
+                        temp=temp->right;
+                    }
+                }
+            }
+        }
+    }
+    
+    else
+    {
+        printf("\nElement already inserted!\n");
+    }
+    
+}
+
+
+struct node* successor(struct node *temp)
+{
+    struct node *succ;
+    if(temp->right==NULL)
+    {
+        succ = NULL;
     }
     else
     {
-        
-    
+        while(temp!=NULL)
+        {
+            if(temp->left==NULL)
+            {
+                succ=temp;
+                break;
+            }
+            else
+            {
+                temp=temp->left;
+            }
+        }
     }
+    return succ;
+}
+
+struct node* predecessor(struct node *temp)
+{
+    struct node *pre;
+    if(temp->left==NULL)
+    {
+        pre=NULL;
+    }
+    else
+    {
+        while(temp!=NULL)
+        {
+            if(temp->right==NULL)
+            {
+                pre=temp;
+                break;
+            }
+            else
+            {
+                temp=temp->right;
+            }
+        }
+    }
+    return pre;
+}
+
+struct node* parent(int key)
+{
+    struct node *p=root;
+    while(p!=NULL)
+    {
+        if(p->left->data==key || p->right->data==key)
+        {
+            break;
+        }
+        if(key>p->data)
+        {
+            p=p->right;
+        }
+        else
+        {
+            p=p->left;
+        }
+    }
+    return p;
+}
+
+struct node* del_node(int key)
+{
+    temp=root;
+    while (temp!=NULL)
+    {
+        if(temp->data==key)
+        {
+            break;
+        }
+        else if(key<temp->data)
+        {
+            temp=temp->left;
+        }
+        else
+        {
+            temp=temp->right;
+        }
+    }
+    
+    return temp;
 }
 
 void delete()
 {
-    int n;
-    n=count();
-    if(head==NULL)
+    int t,f;
+    struct node *p,*succ,*pre;
+    printf("\nEnter the element to delete : ");
+    scanf("%d",&t);
+    f=inordertraversal(root,t);
+    if(f==1) 
     {
-        printf("\nList is empty!!!\n");
-    }
-    else if(head->next==NULL)
-    {
-        temp=head;
-        head=NULL;
-        printf("\nDeleted %d\n",temp->data);
-        printf("\nNew list is empty\n");
-        free(temp);
-    }
-    else
-    {
-        int c,p;
-        printf("\n1.Begining \n2.Specific node \n3. End\nWhich node do you want to delete : ");
-        scanf("%d",&c);
-        switch (c)
+        //deleting root node
+        if(t==root->data)
         {
-            case 1:
-                temp=head;
-                head=head->next;
-                head->prev=NULL;
-                printf("\nDeleted %d\n",temp->data);
-                printf("\nNew list is\n");
-                display();
-                free(temp);
-                break;
-
-            case 2:
-                printf("Enter the position to delete : ");
-                scanf("%d",&p);
-                if(p>n)
+            if(root->left==NULL&&root->right==NULL)
+            {
+                root=NULL;
+            }
+            else
+            {
+                temp=successor(root);
+                if(temp==NULL)
                 {
-                    printf("\nInvalid position!!!\n");
-                    break;
+                    temp=predecessor(root);
                 }
-                if(p==1)
+                p=parent(temp->data);
+                root->data=temp->data;
+                if(p->left->data==temp->data)
                 {
-                    temp=head;
-                    head=head->next;
-                    head->prev=NULL;
+                    p->left=NULL;
                 }
                 else
                 {
-                    current=head;
-                    for(int i=2;i<p;i++)
-                    {
-                    current=current->next;
-                    }
-                    if(current->next->next==NULL)
-                    {
-                        temp=current->next;
-                        current->next=NULL;
-                    }
-                    else
-                    {
-                        temp=current->next;
-                        current->next=temp->next;
-                        temp->next->prev=current;
-                    }
+                    p->right=NULL;
                 }
-                printf("\nDeleted %d\n",temp->data);
-                printf("\nNew list is\n");
-                display();
-                free(temp);
-                break;
-                
-            case 3:
-                current=head;
-                while (current->next->next!=NULL)
-                {
-                    current=current->next;
-                }
-                temp=current->next;
-                current->next=NULL;
-                printf("\nDeleted %d\n",temp->data);
-                printf("\nNew list is\n");
-                display();
-                free(temp);
-                break;
 
-            default:
-                break;
-        } 
+            }
+        }
+
+        else
+        {
+            temp=del_node(t);
+        	p=parent(temp->data);
+
+            //deleting leaf node
+            if(temp->left==NULL&&temp->right==NULL)
+            {
+                if(p->left->data==temp->data)
+                {
+                    p->left=NULL;
+                }
+                else
+                {
+                    p->right=NULL;
+                }
+            }
+
+            //deleting node with one child
+            else if(temp->left==NULL&&temp->right!=NULL)
+            {
+                succ=successor(temp);
+                p=parent(succ->data);
+                temp->data=succ->data;
+                if(p->left->data==succ->data)
+                {
+                    p->left=NULL;
+                }
+                else
+                {
+                    p->right=NULL;
+                }
+
+            }
+
+            else if(temp->right==NULL&&temp->left!=NULL)
+            {
+                pre=predecessor(temp);
+                p=parent(succ->data);
+                temp->data=succ->data;
+                if(p->left->data==pre->data)
+                {
+                    p->left=NULL;
+                }
+                else
+                {
+                    p->right=NULL;
+                }
+
+            }
+
+            //deleting node with two children
+            else
+            {
+                
+            }
+        }
+
+    }
+    else
+    {
+        printf("\nElement not present in the tree!\n");
     }
 }
 
@@ -190,7 +346,7 @@ void main()
     int choice=0;
     while(choice<4)
     {
-        printf("\nDoubly Linked List operations\n");
+        printf("\nBST List operations\n");
         printf("1.Display \n2.Insertion \n3.Deletion \n4.Exit\n");
         printf("Enter your choice : ");
         scanf("%d",&choice);
@@ -198,13 +354,13 @@ void main()
         switch (choice)
         {
             case 1:
-                display();
+                inorderdisplay(root);
                 break;
             case 2:
                 insert();
+                printf("\n");
                 break;
             case 3:
-                delete();
                 break;
             case 4:
                 break;
