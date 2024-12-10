@@ -31,6 +31,28 @@ void inorderdisplay(struct node *temp)
     }
 }
 
+void treedisplay(struct node *node, int n)
+{
+    if(node==NULL)
+    {
+        return;
+    }
+    n++;
+    treedisplay(node->right,n);
+    if(n==1)
+        printf("Root -> ");
+    else
+    {
+        for(int i=0;i<n;i++)
+        {
+            printf("\t");            
+        }
+    }
+    printf("%d\n",node->data);
+    treedisplay(node->left,n);
+}
+
+
 int inordertraversal(struct node *temp,int key)
 {
     if(temp!=NULL)
@@ -140,7 +162,7 @@ void insert()
     
     else
     {
-        printf("\nElement already inserted!\n");
+        printf("\nElement already present!\n");
     }
     
 }
@@ -155,11 +177,11 @@ struct node* successor(struct node *temp)
     }
     else
     {
+        temp=temp->right;
         while(temp!=NULL)
         {
             if(temp->left==NULL)
             {
-                succ=temp;
                 break;
             }
             else
@@ -167,6 +189,7 @@ struct node* successor(struct node *temp)
                 temp=temp->left;
             }
         }
+        succ=temp;
     }
     return succ;
 }
@@ -180,11 +203,11 @@ struct node* predecessor(struct node *temp)
     }
     else
     {
+        temp=temp->left;
         while(temp!=NULL)
         {
             if(temp->right==NULL)
             {
-                pre=temp;
                 break;
             }
             else
@@ -192,6 +215,7 @@ struct node* predecessor(struct node *temp)
                 temp=temp->right;
             }
         }
+        pre=temp;
     }
     return pre;
 }
@@ -241,36 +265,61 @@ struct node* del_node(int key)
 
 void delete()
 {
-    int t,f;
-    struct node *p,*succ,*pre;
+    int t,f,pr=0,su=0;
+    struct node *p,*succ,*pre,*c;
     printf("\nEnter the element to delete : ");
     scanf("%d",&t);
     f=inordertraversal(root,t);
     if(f==1) 
     {
+        printf("\nElement present\n");
         //deleting root node
         if(t==root->data)
         {
+            printf("\nDeleteing root\n");
             if(root->left==NULL&&root->right==NULL)
             {
                 root=NULL;
+                printf("\ntree empty\n");
             }
             else
             {
                 temp=successor(root);
+                su=1;
                 if(temp==NULL)
                 {
                     temp=predecessor(root);
+                    su=0;
+                    pr=1;
                 }
+                printf("\nReplacing root with %d",temp->data,"\n");
                 p=parent(temp->data);
                 root->data=temp->data;
                 if(p->left->data==temp->data)
                 {
-                    p->left=NULL;
+                    if(su==1)
+                        if(temp->right!=NULL)
+                            p->left=temp->right;
+                        else
+                            p->left=NULL;
+                    else
+                        if(temp->left!=NULL)
+                            p->left=temp->left;
+                        else
+                            p->left=NULL;
                 }
                 else
                 {
-                    p->right=NULL;
+                    if(su==1)
+                        if(temp->right!=NULL)
+                            p->right=temp->right;
+                        else
+                            p->right=NULL;
+                    else
+                        if(temp->left!=NULL)
+                            p->right=temp->left;
+                        else
+                            p->right=NULL;
                 }
 
             }
@@ -284,6 +333,7 @@ void delete()
             //deleting leaf node
             if(temp->left==NULL&&temp->right==NULL)
             {
+                printf("\ndeleting leaf node\n");
                 if(p->left->data==temp->data)
                 {
                     p->left=NULL;
@@ -297,32 +347,48 @@ void delete()
             //deleting node with one child
             else if(temp->left==NULL&&temp->right!=NULL)
             {
+                printf("\nDeleting node with right child\n");
                 succ=successor(temp);
+                printf("\nReplacing node with %d",succ->data,"\n");
                 p=parent(succ->data);
                 temp->data=succ->data;
                 if(p->left->data==succ->data)
                 {
-                    p->left=NULL;
+                    if(succ->right!=NULL)
+                        p->left=succ->right;
+                    else
+                        p->left=NULL;
                 }
                 else
                 {
-                    p->right=NULL;
+                    if(succ->left!=NULL)
+                        p->right=succ->left;
+                    else
+                        p->right=NULL;
                 }
 
             }
 
             else if(temp->right==NULL&&temp->left!=NULL)
             {
+                printf("\nDeleting node with left child\n");
                 pre=predecessor(temp);
-                p=parent(succ->data);
-                temp->data=succ->data;
+                printf("\nReplacing node with %d",pre->data,"\n");
+                p=parent(pre->data);
+                temp->data=pre->data;
                 if(p->left->data==pre->data)
                 {
-                    p->left=NULL;
+                    if(pre->right!=NULL)
+                        p->left=pre->right;
+                    else
+                        p->left=NULL;
                 }
                 else
                 {
-                    p->right=NULL;
+                    if(pre->left!=NULL)
+                        p->right=pre->left;
+                    else
+                        p->right=NULL;
                 }
 
             }
@@ -330,10 +396,32 @@ void delete()
             //deleting node with two children
             else
             {
-                
+                printf("\nDeleting node with two children\n");
+                c=successor(temp);
+                if(c==NULL)
+                {
+                    c=predecessor(temp);
+                }
+                printf("\nReplacing node with %d",c->data,"\n");
+                p=parent(c->data);
+                temp->data=c->data;
+                if(p->left->data==c->data)
+                {
+                    if(c->right!=NULL)
+                        p->left=c->right;
+                    else
+                        p->left=NULL;
+                }
+                else
+                {
+                    if(c->left!=NULL)
+                        p->right=c->left;
+                    else
+                        p->right=NULL;
+                }
             }
         }
-
+    printf("\nElement deleted\n");
     }
     else
     {
@@ -341,13 +429,18 @@ void delete()
     }
 }
 
+void deletenode(struct node *temp)
+{
+    
+}
+
 void main()
 {
     int choice=0;
-    while(choice<4)
+    while(choice<5)
     {
         printf("\nBST List operations\n");
-        printf("1.Display \n2.Insertion \n3.Deletion \n4.Exit\n");
+        printf("1.Display \n2.Insertion \n3.Deletion \n4.Tree display \n5.Exit\n");
         printf("Enter your choice : ");
         scanf("%d",&choice);
 
@@ -361,8 +454,13 @@ void main()
                 printf("\n");
                 break;
             case 3:
+                delete();
+                printf("\n");
                 break;
             case 4:
+                treedisplay(root,0);
+                break;
+            case 5:
                 break;
             default:
                 break;
