@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Java script</h1>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias debitis officia saepe similique, reprehenderit quis 
+            placeat libero odio commodi dolores vero maiores error perspiciatis repellat explicabo quae nemo ex eos reiciendis unde. 
+            Ullam nulla rerum ipsum obcaecati, voluptate nesciunt soluta quod enim quidem accusantium, molestias accusamus earum eos. 
+            Voluptates error exercitationem reiciendis aut sapiente odio earum, dicta aliquam provident in tempora suscipit autem 
+            dolorem? Eligendi sunt molestias tenetur est beatae sit, provident similique eveniet placeat assumenda, reiciendis 
+            consequuntur officiis minima illum delectus, ab saepe! Voluptas cupiditate illum corrupti deleniti iure numquam eveniet 
+            nam modi, nobis, ipsum dolorem? Architecto inventore, beatae praesentium numquam maxime a voluptas, illo magni sed 
+            doloremque eaque commodi quaerat quae repudiandae quibusdam natus. Saepe adipisci quas tempore quaerat qui eveniet 
+            explicabo temporibus iusto suscipit quasi maxime obcaecati, quos odit in aperiam nulla voluptatibus, voluptatem corrupti 
+            eos nihil magni atque? Corporis similique delectus praesentium quam cumque ab fugit mollitia esse nulla natus porro id 
+            eveniet quibusdam quasi nisi repudiandae, minus expedita debitis quidem! Rerum facere sint nesciunt modi accusantium 
+            blanditiis assumenda eveniet iste deleniti quia! Harum voluptatem repudiandae doloribus quis aperiam voluptas. Sed, est 
+            nihil. Placeat nulla aspernatur totam, iste quam officia. Ipsum quae itaque beatae reprehenderit. Sunt, in voluptatum. 
+            Assumenda error ab adipisci, distinctio illo explicabo modi optio fugit sint omnis! A repellendus, consequatur cumque 
+            reiciendis nihil optio impedit necessitatibus, dolor omnis expedita dolores deleniti mollitia veritatis eveniet 
+            voluptatibus. Ipsam dolor eum tenetur deleniti nostrum voluptates voluptate iusto dolorem sit exercitationem, quae quasi 
+            quo voluptatem deserunt saepe ut accusamus amet maiores culpa, architecto autem ad minus accusantium! Dolores iure eveniet 
+            nemo provident eius tempore quibusdam vitae qui sed illo aut voluptates soluta, suscipit officia, natus corporis deserunt 
+            officiis quaerat. Totam maxime mollitia autem dolorem, similique eius minus sit eaque illum, doloremque nostrum amet 
+            itaque libero ea eligendi aspernatur corrupti alias porro quis perspiciatis suscipit repudiandae aliquam. Optio odio 
+            dolorem accusantium voluptatum natus eum reiciendis maxime? Dolor iste alias officiis deserunt doloremque quam tempora 
+            eum reiciendis neque veniam quasi ipsa sit, esse ipsum vitae similique obcaecati illum placeat tenetur fugiat officia? 
+            Omnis possimus hic vero suscipit atque non. Ex laudantium atque eos inventore nulla esse, accusamus molestias ipsam 
+            sapiente, facere, aliquid hic eligendi ad error. Harum in quis laudantium dicta quidem. Quasi ad voluptate, fuga molestiae 
+            nisi iure voluptates error distinctio qui illo laudantium impedit aperiam facere, possimus quia eum perspiciatis magni 
+            assumenda. Quisquam voluptas aut beatae nostrum!</p>
+
+    </div>
+    
+    <div style="display: flex; justify-content: space-around; ">
+        <button onclick="showstring()">String</button>      <button onclick="showmath()">Math</button>
+    </div>
+
+    <div>
+        <div id="string" style="display: none; background-color: #80dbff;">
+            <h2>String</h2><br>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, id sequi vitae ab veniam ipsa itaque? Velit, explicabo 
+                unde voluptates cupiditate doloribus modi, quibusdam excepturi, vel cum provident quod qui reiciendis temporibus odio 
+                nulla rerum mollitia in quos maiores laudantium nemo cumque omnis at? Delectus voluptatem architecto, eum praesentium 
+                atque ea pariatur unde excepturi nemo quisquam sequi expedita eligendi. Similique itaque odio ratione ut perferendis 
+                assumenda quaerat amet eum officia? Dolorem aspernatur ad aliquid nobis ducimus possimus hic corrupti, nisi, vero 
+                laudantium, minima libero omnis autem dignissimos totam explicabo? Nam quisquam tempora accusamus beatae natus labore 
+                deserunt. Explicabo, molestias ducimus.</p>
+        </div>
+
+        <div id="math" style="display: none; background-color: #80ffc0;">
+            <h2>Math</h2><br>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, id sequi vitae ab veniam ipsa itaque? Velit, explicabo 
+                unde voluptates cupiditate doloribus modi, quibusdam excepturi, vel cum provident quod qui reiciendis temporibus odio 
+                nulla rerum mollitia in quos maiores laudantium nemo cumque omnis at? Delectus voluptatem architecto, eum praesentium 
+                atque ea pariatur unde excepturi nemo quisquam sequi expedita eligendi. Similique itaque odio ratione ut perferendis 
+                assumenda quaerat amet eum officia? Dolorem aspernatur ad aliquid nobis ducimus possimus hic corrupti, nisi, vero 
+                laudantium, minima libero omnis autem dignissimos totam explicabo? Nam quisquam tempora accusamus beatae natus labore 
+                deserunt. Explicabo, molestias ducimus.</p>
+        </div>
+    </div>
+
+</body>
+
+
+<script>
+    function showstring()
+    {
+        string=document.getElementById("string");
+        math=document.getElementById("math");
+        string.style.display="block";
+        math.style.display="none";
+    }
+
+    function showmath()
+    {
+        string=document.getElementById("string");
+        math=document.getElementById("math");
+        string.style.display="none";
+        math.style.display="block";
+    }
+</script>
+</html>

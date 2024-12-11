@@ -348,23 +348,17 @@ void delete()
             else if(temp->left==NULL&&temp->right!=NULL)
             {
                 printf("\nDeleting node with right child\n");
-                succ=successor(temp);
+                succ=temp->right;
                 printf("\nReplacing node with %d",succ->data,"\n");
-                p=parent(succ->data);
+                p=parent(temp->data);
                 temp->data=succ->data;
-                if(p->left->data==succ->data)
+                if(p->left->data==temp->data)
                 {
-                    if(succ->right!=NULL)
-                        p->left=succ->right;
-                    else
-                        p->left=NULL;
+                    p->left=succ;
                 }
                 else
                 {
-                    if(succ->left!=NULL)
-                        p->right=succ->left;
-                    else
-                        p->right=NULL;
+                    p->right=succ;
                 }
 
             }
@@ -372,23 +366,17 @@ void delete()
             else if(temp->right==NULL&&temp->left!=NULL)
             {
                 printf("\nDeleting node with left child\n");
-                pre=predecessor(temp);
+                pre=temp->left;
                 printf("\nReplacing node with %d",pre->data,"\n");
-                p=parent(pre->data);
+                p=parent(temp->data);
                 temp->data=pre->data;
-                if(p->left->data==pre->data)
+                if(p->left->data==temp->data)
                 {
-                    if(pre->right!=NULL)
-                        p->left=pre->right;
-                    else
-                        p->left=NULL;
+                    p->left=pre;
                 }
                 else
                 {
-                    if(pre->left!=NULL)
-                        p->right=pre->left;
-                    else
-                        p->right=NULL;
+                    p->right=pre;
                 }
 
             }
@@ -431,7 +419,7 @@ void delete()
 
 void deletenode(struct node *temp)
 {
-    
+
 }
 
 void main()

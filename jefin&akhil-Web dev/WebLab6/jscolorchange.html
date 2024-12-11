@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="body" style="background-color: #FFFFFF; justify-content: center; align-items: center;">
+        <button style="background-color: #FFFFFF; color: black; position: fixed; margin-top: 45dvh; margin-left: 45dvw;
+        border-radius: 10%;">Change color</button>
+</body>
+
+<script>
+    function changecolor()
+    {
+        let hex="123456789ABCDEF";
+        let color = "#";
+        for (let i =0; i<6;i++)
+        {
+            color+=hex[Math.floor(Math.random()*16)];
+        }
+        document.querySelector("body").style.backgroundColor=color;
+    }
+    document.querySelector("button").addEventListener("click",changecolor);
+</script>
+</html>
