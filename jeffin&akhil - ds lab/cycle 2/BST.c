@@ -80,91 +80,27 @@ int inordertraversal(struct node *temp,int key)
     }
 }
 
-/*
-int count()
+struct node* nodecreation(int data)
 {
-    int count=0;
-    if(head==NULL)
-    {
-        return count;
-    }
-    else
-    {
-        temp=head;
-        while(temp!=NULL)
-        {
-            count++;
-            temp=temp->next;
-        }
-        return count;
-    }
+    newnode=(struct node*)malloc(sizeof(newnode));
+    newnode->data=data;
+    newnode->right=NULL;
+    newnode->left=NULL;
+    return newnode;
 }
-*/
 
-void insert()
+struct node* insert(struct node *root,struct node *newnode)
 {
-    int t,f;
-    printf("\nEnter the element : ");
-    scanf("%d",&t);
-    f=inordertraversal(root,t);
-    if(f==0)
-    {
-        newnode=(struct node*)malloc(sizeof(newnode));
-        newnode->data=t;
-        newnode->left=NULL;
-        newnode->right=NULL;
-
-        if(root==NULL)
-        {
-            root=newnode;
-            printf("\nInserted %d\n",newnode->data);
-            printf("\nNew tree is\n");
-            inorderdisplay(root);
-        }
-        else
-        {
-            temp=root;
-            while(temp!=NULL)
-            {
-                if(t<temp->data)
-                {
-                    if(temp->left==NULL)
-                    {
-                        temp->left=newnode;
-                        printf("\nInserted %d\n",newnode->data);
-                        printf("\nNew tree is\n");
-                        inorderdisplay(root);
-                        break;
-                    }
-                    else
-                    {
-                        temp=temp->left;
-                    }
-                }
-                else
-                {
-                    if(temp->right==NULL)
-                    {
-                        temp->right=newnode;
-                        printf("\nInserted %d\n",newnode->data);
-                        printf("\nNew tree is\n");
-                        inorderdisplay(root);
-                        break;
-                    }
-                    else
-                    {
-                        temp=temp->right;
-                    }
-                }
-            }
-        }
-    }
-    
+    if (root==NULL)
+        root=newnode;
+        
+    else if (newnode->data>root->data)
+        root->right=insert(root->right,newnode);
+        
     else
-    {
-        printf("\nElement already present!\n");
-    }
-    
+        root->left=insert(root->left,newnode);
+
+    return root;       
 }
 
 
@@ -438,8 +374,17 @@ void main()
                 inorderdisplay(root);
                 break;
             case 2:
-                insert();
-                printf("\n");
+                int t,f;
+                printf("\nEnter the element : ");
+                scanf("%d",&t);
+                f=inordertraversal(root,t);
+                if(f==0)
+                {
+                    newnode=nodecreation(t);
+                    root=insert(root,newnode);
+                }
+                else
+                    printf("\nElement already present!\n");
                 break;
             case 3:
                 delete();
