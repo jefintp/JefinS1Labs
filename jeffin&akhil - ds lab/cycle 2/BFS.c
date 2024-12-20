@@ -14,22 +14,22 @@ void enqueue(int key)
     {
         queue[++rear]=key;
     }
-    printf("\nEnqued front=%d rear=%d",front,rear);
 }
 
 int dequeue()
 {
+    int node;
     if(front==rear)
     {
-        return queue[front];
+        node=queue[front];
         front=-1;
         rear=-1;
     }
     else
     {
-        return queue[front++];
+        node=queue[front++];
     }
-    printf("\ndequed front= %d rear= %d",front,rear);
+    return node;
 }
 
 void bfs(int start,int n)
@@ -38,15 +38,13 @@ void bfs(int start,int n)
     printf("\nVisited - %d ",start);
     enqueue(start);
     visited[start]=1;
-    printf("\nVisited of %d = 1",start);
-    while(front<=rear)
+    while(front!=-1)
     {
         node=dequeue();
-        printf("\nnode = %d",node);
         for(int i=0;i<n;i++)
             if(ar[node][i]==1 && visited[i]!=1)
             {
-                printf("\nVisited - %d ",i);
+                printf("%d ",i);
                 visited[i]=1;
                 enqueue(i);
             }
@@ -55,16 +53,18 @@ void bfs(int start,int n)
 
 void main()
 {
-    int n,start;
+    int n,start,k;
     printf("Enter the number of vertices : ");
     scanf("%d",&n);
     printf("\nEnter the adjacency matrix : \n");
     for(int i=0;i<n;i++)
     {
-        for(int j=0;j<n;j++)
+        for(int j=i;j<n;j++)
         {
             printf("Enter the element A[%d][%d] : ",i,j);
-            scanf("%d",&ar[i][j]);
+            scanf("%d",&k);
+            ar[i][j]=k;
+            ar[j][i]=k;
         }
     }
     for(int i=0;i<n;i++)
