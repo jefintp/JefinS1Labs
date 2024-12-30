@@ -9,7 +9,7 @@
 
 9.BST
 10.Prims Algorithm
-11.Kruskals Algorithm
+11.Kruskals Algorithm https://youtu.be/nbZYl2sMaEI?si=HekJnq8SvSdoEXab
 12.Dijikstras Algorithm
 13.Topological sorting
 14.DFS
