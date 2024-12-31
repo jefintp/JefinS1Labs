@@ -1,52 +1,55 @@
-#include <stdio.h>
-#include <conio.h>
-
+#include<stdio.h>
+#include<stdlib.h>
 void main()
 {
-    int n,ar[25][25],visited[25],k,e = 0,cost = 0;
-    printf("Enter the number of vertices : ");
-    scanf("%d", &n);
-
-    printf("\nEnter the adjacency matrix : \n");
-    for(int i=0;i<n;i++)
-    {
-        for(int j=0;j<n;j++)
-        {
-            printf("Enter the element A[%d][%d] : ",i,j);
-            scanf("%d",&k);
-            if(k==0)
-                k=1000;
-            ar[i][j]=k;
-        }
-    }
-
-    visited[0] = 1;
-    printf("\nEdges of Minimum cost spanning tree are :\n");
-
-    while (e < n-1) 
-    {
-        int min, u, v;
-        for (int i = 0; i < n; i++) 
-        {
-            if (visited[i]) 
-            {
-                min = 1000;
-                for (int j = 0; j < n; j++) 
-                {
-                    if (ar[i][j] < min && !visited[j]) 
-                    {
-                        min = ar[i][j];
-                        u = i;
-                        v = j;
-                    }
-                }
-            }
-        }
-
-        visited[v] = 1;
-        printf("{%d, %d} = %d\n", u, v, min);
-        cost += min;
-		e++;
-    }
-    printf("\nMinimum Cost: %d\n", cost);
+	int n;
+	printf("Enter no of vertices: ");
+	scanf("%d",&n);
+	int A[n][n],vi[n],u,v,min=999,cost=0,e=1;
+	printf("Enter adjacency matrix: ");
+	for(int i=0;i<n;i++)
+	{
+		vi[i]=0;
+		for(int j=0;j<n;j++)
+		{
+			scanf("%d",&A[i][j]);
+			if(A[i][j]==0)
+				A[i][j]=999;
+			if(A[i][j]<min)
+			{
+				min=A[i][j];
+				u=i;
+				v=j;
+			}
+		}
+	}
+	cost+=min;
+	vi[u]=1;
+	vi[v]=1;
+	printf("\nSpanning Tree\n");
+	printf("Edge {%d,%d}= %d\n",u,v,min);
+	while(e<n-1) // Minimum spanning tree will always have n-1 edges.
+	{
+		min=999;
+		for(int i=0;i<n;i++) //checks if selected start vertex is visited 
+		{
+			if(vi[i]==1) // if visited then:
+			{
+				for(int j=0;j<n;j++) // loop to find mininmum weight edge connected to start vertex 
+				{
+					if(A[i][j]<min && vi[j]==0)
+					{
+						min=A[i][j];
+						u=i;
+						v=j;
+					}
+				}
+			}
+		}
+		cost+=min;
+		vi[v]=1; // make end vertex visited
+		printf("Edge {%d,%d}= %d\n",u,v,min);
+		e+=1;
+	}
+	printf("Cost = %d",cost);
 }
